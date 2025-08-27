@@ -1,0 +1,79 @@
+/* [project]/styles/globals.css [client] (css) */
+.ol-popup {
+  color: #66fcf1;
+  background-color: #1f2833;
+  border: 1px solid #45a29e;
+  border-radius: 8px;
+  min-width: 280px;
+  padding: 15px;
+  position: absolute;
+  bottom: 12px;
+  left: -50px;
+  box-shadow: 0 2px 10px #0000004d;
+}
+
+.ol-popup:after, .ol-popup:before {
+  content: " ";
+  pointer-events: none;
+  border: solid #0000;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 100%;
+}
+
+.ol-popup:after {
+  border-width: 10px;
+  border-top-color: #1f2833;
+  margin-left: -10px;
+  left: 48px;
+}
+
+.ol-popup:before {
+  border-width: 11px;
+  border-top-color: #45a29e;
+  margin-left: -11px;
+  left: 48px;
+}
+
+.soldier-popup {
+  font-family: "Exo 2", sans-serif;
+}
+
+.soldier-popup h3 {
+  border-bottom: 1px solid #45a29e;
+  margin: 0 0 10px;
+  padding-bottom: 5px;
+}
+
+.soldier-popup p {
+  margin: 5px 0;
+}
+
+.soldier-popup ul {
+  margin: 5px 0;
+  padding-left: 20px;
+}
+
+.soldier-popup li {
+  margin: 2px 0;
+}
+
+.ol-control button {
+  background-color: #45a29e !important;
+}
+
+.ol-control button:hover {
+  background-color: #66fcf1 !important;
+}
+
+.ol-attribution {
+  background: #1f2833cc !important;
+}
+
+.ol-attribution ul, .ol-attribution a {
+  color: #66fcf1 !important;
+}
+
+
+/*# sourceMappingURL=styles_globals_79636149.css.map*/

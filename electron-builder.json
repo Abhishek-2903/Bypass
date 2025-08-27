@@ -1,0 +1,102 @@
+{
+  "appId": "com.mechphy.sci-fi-simulator",
+  "productName": "Sci-Fi Simulator",
+  "copyright": "Copyright © 2024 MechPhy",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build"
+  },
+  "files": [
+    "electron/main.js",
+    ".next/**/*",
+    "public/**/*",
+    "components/**/*",
+    "node_modules/**/*",
+    "package.json",
+    "config.js",
+    "next.config.js",
+    "!node_modules/.cache",
+    "!**/*.map",
+    "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+    "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+    "!**/node_modules/*.d.ts",
+    "!**/node_modules/.bin",
+    "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+    "!.editorconfig",
+    "!**/._*",
+    "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+    "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+    "!**/{appveyor.yml,.travis.yml,circle.yml}",
+    "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+  ],
+  "asarUnpack": [
+    "**/node_modules/sql.js/dist/*.wasm",
+    "components/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "node_modules/sql.js/dist",
+      "to": "app/node_modules/sql.js/dist",
+      "filter": ["**/*.wasm"]
+    },
+    {
+      "from": "components",
+      "to": "components",
+      "filter": ["**/*"]
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/favicon.ico",
+    "executableName": "sci-fi-simulator",
+    "artifactName": "sci-fi-simulator-${version}-win-${arch}.${ext}",
+    "publisherName": "MechPhy",
+    "verifyUpdateCodeSignature": false,
+    "requestedExecutionLevel": "asInvoker"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "allowElevation": true,
+    "installerIcon": "public/favicon.ico",
+    "uninstallerIcon": "public/favicon.ico",
+    "installerHeaderIcon": "public/favicon.ico",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Sci-Fi Simulator",
+    "include": "build/installer.nsh"
+  },
+  "mac": {
+    "icon": "public/favicon.icns",
+    "category": "public.app-category.utilities",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      }
+    ]
+  },
+  "linux": {
+    "icon": "public/favicon.png",
+    "category": "Utility",
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      },
+      {
+        "target": "deb",
+        "arch": ["x64"]
+      }
+    ]
+  },
+  "publish": null,
+  "buildDependenciesFromSource": false,
+  "nodeGypRebuild": false,
+  "npmRebuild": true
+}

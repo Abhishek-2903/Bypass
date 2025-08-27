@@ -1,0 +1,34 @@
+globalThis.__BUILD_MANIFEST = {
+  "pages": {
+    "/": [
+      "static/chunks/components_MapSection_2956821f.js",
+      "static/chunks/node_modules_next_d33793b1._.js",
+      "static/chunks/node_modules_react-dom_82bb97c6._.js",
+      "static/chunks/node_modules_24406989._.js",
+      "static/chunks/[root-of-the-server]__21409bac._.js",
+      "static/chunks/styles_rtm_module_ae4e1a2c.css",
+      "static/chunks/pages_index_5771e187._.js",
+      "static/chunks/pages_index_055d133b._.js"
+    ],
+    "/_app": [
+      "static/chunks/node_modules_next_dist_4f3d469a._.js",
+      "static/chunks/node_modules_react-dom_82bb97c6._.js",
+      "static/chunks/node_modules_2a5cf4bb._.js",
+      "static/chunks/[root-of-the-server]__ec9fe86a._.js",
+      "static/chunks/styles_globals_79636149.css",
+      "static/chunks/pages__app_5771e187._.js",
+      "static/chunks/pages__app_060320d8._.js"
+    ]
+  },
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [],
+  "ampFirstPages": []
+};
+globalThis.__BUILD_MANIFEST.lowPriorityFiles = [
+"/static/" + process.env.__NEXT_BUILD_ID + "/_buildManifest.js",
+,"/static/" + process.env.__NEXT_BUILD_ID + "/_ssgManifest.js",
+
+];

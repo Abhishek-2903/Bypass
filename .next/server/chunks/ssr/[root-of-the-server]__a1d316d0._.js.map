@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file:///C:/backup/incase%20port%20is%20not%20working/new_format/pages/_document.js"],"sourcesContent":["// pages/_document.js\r\nimport { Html, Head, Main, NextScript } from \"next/document\";\r\n\r\nexport default function Document() {\r\n  return (\r\n    <Html lang=\"en\">\r\n      <Head>\r\n        {/* put any other global <link> or <meta> tags you need here */}\r\n      </Head>\r\n\r\n      <body>\r\n        <Main />\r\n        <NextScript />\r\n      </body>\r\n    </Html>\r\n  );\r\n}\r\n"],"names":[],"mappings":"AAAA,qBAAqB;;;;;AACrB;;;AAEe,SAAS;IACtB,qBACE,qKAAC,yHAAA,CAAA,OAAI;QAAC,MAAK;;0BACT,qKAAC,yHAAA,CAAA,OAAI;;;;;0BAIL,qKAAC;;kCACC,qKAAC,yHAAA,CAAA,OAAI;;;;;kCACL,qKAAC,yHAAA,CAAA,aAAU;;;;;;;;;;;;;;;;;AAInB","debugId":null}}]
+}
