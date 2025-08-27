@@ -1,0 +1,13 @@
+# Ensure text files use LF line endings in the repository
+* text=auto eol=lf
+# Ignore node_modules from line ending conversion
+node_modules/* -text
+# Explicitly set specific file types to LF
+*.js text eol=lf
+*.css text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+# Treat binary files as binary (no line ending conversion)
+*.wasm binary
