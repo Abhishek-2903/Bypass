@@ -1,0 +1,757 @@
+/* General Page Styling */
+.simulationPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: #0b0c10;
+  color: #66fcf1;
+  font-family: "Exo 2", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Session Header */
+.sessionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #1f2833;
+  border-bottom: 2px solid #66fcf1;
+  position: relative;
+  z-index: 1000;
+}
+
+.backToSessionsButton {
+  background: #0f3460;
+  border: 2px solid #66fcf1;
+  color: #66fcf1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.backToSessionsButton:hover {
+  background: #16213e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 252, 241, 0.3);
+}
+
+.currentSessionTitle {
+  color: #00ff88;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+/* Session Selection Styles */
+.sessionSelectionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  padding: 2rem;
+}
+
+.sessionSelectionWrapper {
+  background-color: #1f2833;
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 0 30px rgba(102, 252, 241, 0.3);
+  max-width: 900px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.sessionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 0 2rem;
+  color: #66fcf1;
+  text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+}
+
+.sessionsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.sessionCard {
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+  border: 2px solid #66fcf1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.sessionCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 252, 241, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.sessionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(102, 252, 241, 0.3);
+  border-color: #00ff88;
+}
+
+.sessionCard:hover::before {
+  left: 100%;
+}
+
+.sessionInfo {
+  margin-bottom: 1rem;
+}
+
+.sessionId {
+  color: #00ff88;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.sessionDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sessionDetails p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+}
+
+.sessionDetails span {
+  font-weight: bold;
+  color: #66fcf1;
+  min-width: 80px;
+}
+
+.selectSessionButton {
+  width: 100%;
+  background: linear-gradient(135deg, #00ff88 0%, #66fcf1 100%);
+  border: none;
+  color: #0b0c10;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.selectSessionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+}
+
+.selectSessionButton:disabled {
+  background: #666;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Loading, Error, and No Sessions States */
+.loadingContainer, .errorContainer, .noSessionsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  color: #66fcf1;
+  text-align: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(102, 252, 241, 0.3);
+  border-top: 4px solid #66fcf1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorText {
+  color: #ff4444;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.retryButton, .refreshButton {
+  background: #00ff88;
+  color: #0b0c10;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover, .refreshButton:hover {
+  background: #33ffaa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 255, 136, 0.3);
+}
+
+.retryButton:disabled {
+  background: #666;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Existing styles for the main RTM interface */
+.sidebar {
+  width: 250px;
+  background: #f4f4f4;
+  padding: 1rem;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 2px solid #ddd;
+}
+
+.team-group h4 {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.soldier-item {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.soldier-item:hover {
+  background: #e6f7ff;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+
+.endSessionButton {
+  position: relative;
+  padding: 0.7rem 1.2rem;
+  background-color: #ff4444;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid #ff4444;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.endSessionButton:hover {
+  background-color: #ff6666;
+  border-color: #ff6666;
+  cursor: pointer;
+}
+
+/* Layout Containers - adjusted for session header */
+.container {
+  display: flex;
+  height: calc(100vh - 120px);
+  padding: 20px;
+  gap: 20px;
+}
+
+.leftContainer {
+  flex: 0 0 200px;
+  background-color: #1f2833;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.rightContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mapContainer {
+  flex: 2;
+  position: relative;
+  background-color: #1f2833;
+  border-radius: 10px;
+  overflow: hidden;
+  height: calc(60vh - 100px);
+}
+
+.mapContainer #map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Timeline Container */
+.timelineContainer {
+  flex: 0 0 120px;
+  background-color: #1f2833;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+}
+
+/* Timeline Styling */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.timelineControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.timeDisplay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #66fcf1;
+  min-width: 140px;
+}
+
+.currentTime {
+  color: #00ff88;
+}
+
+.timeSeparator {
+  color: #888;
+}
+
+.maxTime {
+  color: #66fcf1;
+}
+
+.controlButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.controlBtn {
+  background: #0f3460;
+  border: 2px solid #66fcf1;
+  color: #66fcf1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  min-width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controlBtn:hover {
+  background: #16213e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 252, 241, 0.3);
+}
+
+.controlBtn:active {
+  transform: translateY(0);
+}
+
+.playPauseBtn {
+  background: #00ff88;
+  border-color: #00ff88;
+  color: #0b0c10;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.playPauseBtn:hover {
+  background: #33ffaa;
+  border-color: #33ffaa;
+}
+
+.speedControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.speedLabel {
+  font-size: 14px;
+  color: #66fcf1;
+  font-weight: 500;
+}
+
+.speedSelect {
+  background: #0f3460;
+  border: 2px solid #66fcf1;
+  color: #66fcf1;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.speedSelect:focus {
+  outline: none;
+  border-color: #00ff88;
+}
+
+/* Timeline Slider */
+.timelineSlider {
+  position: relative;
+  height: 20px;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #00ff88;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 255, 136, 0.4);
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 10px rgba(0, 255, 136, 0.6);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #00ff88;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 255, 136, 0.4);
+}
+
+.progressContainer {
+  position: relative;
+  height: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #333e4d;
+  border-radius: 3px;
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88 0%, #66fcf1 100%);
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+.bottomSection {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  min-height: 200px;
+  max-height: calc(30vh - 40px);
+}
+
+.killFeed,
+.statsTable {
+  flex: 1;
+  background-color: #1f2833;
+  border-radius: 10px;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+/* Stats Table Styling */
+.statsTableWrapper {
+  background-color: #1e272e;
+  border: 2px solid #ffa502;
+  border-radius: 10px;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.statsTitle {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  color: #ffa502;
+}
+
+#statsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: "Exo 2", sans-serif;
+  background-color: #2f3640;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#statsTable th,
+#statsTable td {
+  padding: 12px 15px;
+  border: 1px solid #ffa502;
+  text-align: center;
+}
+
+#statsTable th {
+  background-color: #ffa502;
+  color: #1e272e;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#statsTable td {
+  background-color: #353b48;
+  color: #dcdde1;
+}
+
+#statsTable tr:hover td {
+  background-color: #57606f;
+  transition: background-color 0.2s ease;
+}
+
+.teamName {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.teamIndicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.teamIndicator.red {
+  background-color: #e84118;
+}
+
+.teamIndicator.blue {
+  background-color: #00a8ff;
+}
+
+/* Scrollbar Styling */
+.sessionSelectionWrapper::-webkit-scrollbar,
+.sessionsList::-webkit-scrollbar,
+.tableContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sessionSelectionWrapper::-webkit-scrollbar-thumb,
+.sessionsList::-webkit-scrollbar-thumb,
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #66fcf1;
+  border-radius: 4px;
+}
+
+.sessionSelectionWrapper::-webkit-scrollbar-thumb:hover,
+.sessionsList::-webkit-scrollbar-thumb:hover,
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #00ff88;
+}
+
+.sessionSelectionWrapper::-webkit-scrollbar-track,
+.sessionsList::-webkit-scrollbar-track,
+.tableContainer::-webkit-scrollbar-track {
+  background: #1f2833;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .timelineControls {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .controlButtons {
+    gap: 4px;
+  }
+  
+  .controlBtn {
+    padding: 6px 8px;
+    min-width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .sessionSelectionWrapper {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .sessionTitle {
+    font-size: 2rem;
+  }
+
+  .sessionsList {
+    grid-template-columns: 1fr;
+  }
+
+  .sessionCard {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sessionHeader {
+    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .currentSessionTitle {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 140px);
+  }
+
+  .leftContainer {
+    flex: none;
+    height: 200px;
+  }
+
+  .mapContainer {
+    height: 300px;
+  }
+
+  .bottomSection {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .sessionSelectionWrapper {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+
+  .sessionTitle {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Animation for smooth transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sessionCard,
+.sessionSelectionWrapper {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.sessionCard:nth-child(even) {
+  animation-delay: 0.1s;
+}
+
+.sessionCard:nth-child(3n) {
+  animation-delay: 0.2s;
+}
