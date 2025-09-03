@@ -150,49 +150,47 @@ export default function RealTimeMonitoring() {
     }
   };
 
-  // Handle timeline control API calls
+  // Handle timeline control API calls using the unified control endpoint
   const handleTimelineControl = async (action, value = null) => {
     if (!selectedSession) return;
 
     try {
-      let endpoint = '';
-      let method = 'POST';
-      let body = {};
+      let requestBody = {};
 
       switch (action) {
         case 'play':
-          endpoint = '/api/replay/play';
+          requestBody = { command: "play" };
           break;
         case 'pause':
-          endpoint = '/api/replay/pause';
+          requestBody = { command: "pause" };
           break;
         case 'seek':
-          endpoint = '/api/replay/seek';
-          body = { time: value };
+          requestBody = { command: "seek", n_seconds: value };
           break;
         case 'speed':
-          endpoint = '/api/replay/speed';
-          body = { speed: value };
+          requestBody = { command: "speed", speed: value };
           break;
         case 'skip':
-          endpoint = '/api/replay/skip';
-          body = { seconds: value };
+          requestBody = { command: "skip", n_seconds: value };
           break;
         default:
           return;
       }
 
-      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-        method,
+      const response = await fetch(`${API_BASE_URL}/api/replay/control/${selectedSession.session_id}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: Object.keys(body).length ? JSON.stringify(body) : undefined
+        body: JSON.stringify(requestBody)
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const result = await response.text();
+      console.log(`${action} command result:`, result);
 
       // Update local state based on action
       switch (action) {
@@ -215,6 +213,8 @@ export default function RealTimeMonitoring() {
 
     } catch (error) {
       console.error(`Error with ${action}:`, error);
+      // You might want to show a user-friendly error message here
+      alert(`Failed to ${action}. Please try again.`);
     }
   };
 
